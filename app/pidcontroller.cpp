@@ -170,17 +170,6 @@
   }
 
   /**
-   * @brief Function to change the time value.
-   * @param newDt (new time value).
-   * @return None.
-   */
-
-  void pidController::changeInTime(double newDt) {
-    // stub implementation
-    std::cout << newDt << std::endl;
-  }
-
-  /**
    * @brief Function to set the proportional gain variable of the PID controller
    * @param kp (Proportional gain)
    * @return None.
@@ -219,6 +208,12 @@
   void pidController::setKb(double kbIn) {
     kb = kbIn;
   }
+
+  /**
+   * @brief Function to set the setpoint value of the PID controller
+   * @param setpoint
+   * @return None.
+   */
 
   void pidController::setSp(double spIn) {
     setpoint = spIn;
@@ -302,6 +297,16 @@
 
   double pidController::getKb() {
     return kb;
+  }
+
+  /**
+   * @brief Function to get the setpoint value of the PID controller
+   * @param None
+   * @return setpoint value
+   */
+
+  double pidController::getSp() {
+    return setpoint;
   }
 
   /**

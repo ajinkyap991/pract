@@ -153,6 +153,7 @@ class pidController {
    */
 
   void setSp(double);
+  double getSp();
 
   double getKp();
 
