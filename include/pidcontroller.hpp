@@ -1,7 +1,7 @@
 /**
  * @file pid.hpp
- * @author Ajinkya Parwekar
- * @author Karan Sutradhar
+ * @author Karan Sutradhar: Driver
+ * @author Ajinkya Parwekar: Navigator
  * @brief Definition of a PID Controller for Ackerman Steering Mechanism
  * It uses controller gain values and returns output value based on setpoint and feedback values.
  * @Copyright "Copyright 2020" <Ajinkya Parwekar>
@@ -15,6 +15,9 @@
 #include <math.h>
 #include <vector>
 #include <chrono>
+#include <vector>
+#define OUTMIN -1e6     // default minimum saturation value
+#define OUTMAX 1e6    // default maximum saturation value
 
 
 // Declaring class definition
@@ -27,6 +30,15 @@ class pidController {
   double baseline, carLen, arcRadius, rWheelVel, lWheelVel, steeringAngle, setpointSpeed, setpointHeading;
   double dtSim, posX, posY, updatedHeading;
   double leftWheelSpeed, rightWheelSpeed;
+  double n;
+  uint32_t t;
+  uint8_t antiWindUp;
+  std::vector<double> vectorOutput;
+  double outMin, outMax;
+  double backCalcOld = 0.0;
+  double kf, CnP, CnI, CnD;
+  double tSec;
+  double x, a, b, min, max;
 
  public:
   /**
@@ -34,6 +46,7 @@ class pidController {
    * @param None.
    * @return None.
    */
+
   pidController();
 
   /**
@@ -240,8 +253,8 @@ class pidController {
    * @return steering angle.
    */
 
-  void computePIDParameters(double *steeringAngle, double *rightWheelSpeed,
-    double *leftWheelSpeed, double *compassHeadingOutput);
+  void computePIDParameters(double *steeringAngle, double *headingOutput,
+    double *rightWheelSpeed, double *leftWheelSpeed);
 
   /**
    * @brief Function to generate the throttle output value.
@@ -249,7 +262,7 @@ class pidController {
    * @return throttle output value.
    */
 
-  double throttleOutput();
+  double throttleOutput(double throttle);
 
   /**
    * @brief Function to set the setpoint values.
@@ -260,12 +273,36 @@ class pidController {
   void setSetPoints(double setpointSpeed, double setpointHeading);
 
   /**
-   * Destructor for PID controller
+   * @brief Function to reset the error values.
    * @param None.
    * @return None.
    */
 
   void reset();
+
+  /**
+   * @brief Function to constrain a value within a range.
+   * @param x (value to be constrained), a (min value), b (max value).
+   * @return constrained value.
+   */
+
+  double constraints(double x, double a, double b);
+
+  /**
+   * @brief Function to set the saturation between limits.
+   * @param min (min value), max (max value).
+   * @return None.
+   */
+
+  void SetSaturation(double min, double max);
+
+  /**
+   * @brief Function to compute the position values of the vehicle.
+   * @param steeringAngle, rightWheelSpeed, leftWheelSpeed, posX, posY, 
+   * @param updateHeading and car length.
+   * @return None.
+   */
+
   void compute(double *steerAng, double *rightWheelSpeed, double *leftWheelSpeed, double *posX,
     double *posY, double *updateHeading, double carLen);
 

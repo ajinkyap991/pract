@@ -1,7 +1,7 @@
 /**
  * @file test.cpp
- * @author Ajinkya Parwekar: Driver
- * @author Karan Sutradhar: Navigator
+ * @author Karan Sutradhar: Driver
+ * @author Ajinkya Parwekar: Navigator
  * @brief Test code functions for PID obj using gtest
  * @Copyright "Copyright 2020" <Ajinkya Parwekar>
  * @Copyright "Copyright 2020" <Karan Sutradhar>
@@ -20,7 +20,6 @@ TEST(objTest, controlFunctionTest1) {
     pidController obj(2.7, 4.5, 6.3, 1.0, false);
     EXPECT_EQ(5.4, obj.computeControlAction(2));
 }
-
 
 /**
  * @brief This test checks if the obj has properly stored its parameters
@@ -58,11 +57,10 @@ TEST(objTest, paramSetTest) {
     obj.setPreviousError(6.2);
     obj.setIntegralError(5.3);
     obj.setSp(2.2);
-
     EXPECT_EQ(5.6, obj.getKp());
     EXPECT_EQ(2.3, obj.getKd());
     EXPECT_EQ(3.6, obj.getKi());
-    EXPECT_EQ(4.5, obj.getKb());
+    EXPECT_EQ(0.0, obj.getKb());
     EXPECT_EQ(2.0, obj.getDt());
     EXPECT_EQ(5.9, obj.getError());
     EXPECT_EQ(6.2, obj.getPreviousError());
@@ -71,46 +69,13 @@ TEST(objTest, paramSetTest) {
 }
 
 /**
- * @brief This test checks if the control law works as expected
- * @param objTest is the name of the group of tests
- * @param getVeriableTest3 is the specific name to check the computeArcRadius function
- */
+* @brief This test covers the various void functions of the program
+* @param objTest is the name of the group of tests
+* @param unitTest1 is the specific name to check the void functions
+*/
 
-// TEST(objTest, getVeriableTest3) {
-//     pidController obj(1, 0, 0, 0, true);
-//     EXPECT_EQ(0, obj.computeArcRadius());
-// }
-
-/**
- * @brief This test checks if the control law works as expected
- * @param objTest is the name of the group of tests
- * @param getVeriableTest4 is the specific name to check the get veriable function
- */
-
-// TEST(objTest, getVeriableTest4) {
-//     pidController obj(1, 0, 0, 0, true);
-//     EXPECT_EQ(0, obj.computeWheelSpeed());
-// }
-
-/**
- * @brief This test checks if the control law works as expected
- * @param objTest is the name of the group of tests
- * @param getVeriableTest5 is the specific name to check the get veriable function
- */
-
-// TEST(objTest, getVeriableTest5) {
-//     pidController obj(1, 0, 0, 0, true);
-//     EXPECT_EQ(0, obj.computePIDParameters(0, 0, 0, 0));
-// }
-
-/**
- * @brief This test checks if the control law works as expected
- * @param objTest is the name of the group of tests
- * @param getVeriableTest6 is the specific name to check the get veriable function
- */
-
-TEST(objTest, getVeriableTest6) {
+TEST(objTest, unitTest1) {
     pidController obj;
     obj.reset();
-    EXPECT_EQ(0, obj.throttleOutput());
+    EXPECT_EQ(0.8, obj.throttleOutput(0.8));
 }
