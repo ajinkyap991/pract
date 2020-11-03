@@ -1,6 +1,6 @@
 # PID Controller for Ackermann Steering
-[![Build Status](https://travis-ci.org/ajinkyap991/ackerman_pid_controller.svg?branch=iterations)](https://travis-ci.org/ajinkyap991/ackerman_pid_controller)
-[![Coverage Status](https://coveralls.io/repos/github/ajinkyap991/ackerman_pid_controller/badge.svg?branch=iterations)](https://coveralls.io/github/ajinkyap991/ackerman_pid_controller?branch=iterations)
+[![Build Status](https://travis-ci.org/ajinkyap991/pract.svg?branch=master)](https://travis-ci.org/ajinkyap991/pract)
+[![Coverage Status](https://coveralls.io/repos/github/ajinkyap991/pract/badge.svg?branch=master)](https://coveralls.io/github/ajinkyap991/pract?branch=master)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 ---
 
