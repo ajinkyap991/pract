@@ -29,15 +29,15 @@ TEST(objTest, controlFunctionTest1) {
  */
 
 TEST(objTest, paramGetTest) {
-    pidController obj(2.7, 4.5, 6.3, 1.0, 1.0, 1.0, 1.0, 1.0);
+    pidController obj(2.7, 4.5, 6.3, 1.0, true);
     EXPECT_EQ(2.7, obj.getKp());
     EXPECT_EQ(4.5, obj.getKd());
     EXPECT_EQ(6.3, obj.getKi());
-    EXPECT_EQ(1.0, obj.getKb());
+    EXPECT_EQ(0.0, obj.getKb());
     EXPECT_EQ(1.0, obj.getDt());
-    EXPECT_EQ(1.0, obj.getError());
-    EXPECT_EQ(1.0, obj.getPreviousError());
-    EXPECT_EQ(1.0, obj.getIntegralError());
+    EXPECT_EQ(0.0, obj.getError());
+    EXPECT_EQ(0.0, obj.getPreviousError());
+    EXPECT_EQ(0.0, obj.getIntegralError());
 }
 
 /**

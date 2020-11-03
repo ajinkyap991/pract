@@ -165,6 +165,7 @@
   }
   previousError = currentError;
   prevTime = std::chrono::system_clock::now();
+  std::cout<<"The output value is: " << output<<std::endl;
   return output;
   }
 
