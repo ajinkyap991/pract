@@ -26,7 +26,6 @@
     errorSum = 0;
     previousError = 0;
     integralError = 0;
-
     prevTime = std::chrono::system_clock::now();
     dtMode = false;
     setpoint = 0;
@@ -66,7 +65,6 @@
     errorSum = 0;
     previousError = 0;
     integralError = 0;
-
     prevTime = std::chrono::system_clock::now();
     dtMode = dtModeIn;
     setpoint = 0;
@@ -111,7 +109,6 @@
     errorSum = errorValue;
     previousError = previousErrorValue;
     integralError = integralErrorValue;
-
     prevTime = std::chrono::system_clock::now();
     dtMode = false;
     setpoint = 0;
@@ -385,8 +382,8 @@
   	  pidController::steeringAngle = computeControlAction(*headingOutput);
   	  computeArcRadius();
   	  computeWheelSpeed();
-  	  std::cout<< "The speed of the right wheel is" << *rightWheelSpeed << std::endl;
-  	  std::cout<< "The speed of the left wheel is" << *leftWheelSpeed << std::endl;
+  	  std::cout<< "The speed of the right wheel is: " << *rightWheelSpeed << std::endl;
+  	  std::cout<< "The speed of the left wheel is: " << *leftWheelSpeed << std::endl;
       // return steeringAngle + rightWheelSpeed
       // + leftWheelSpeed + headingOutput;
   }

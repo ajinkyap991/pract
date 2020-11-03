@@ -17,15 +17,15 @@
  */
 
 int main() {
-    // Initialising Constructor (creating an object of the class)
-    // stub implementation
-  double kp = -10, ki = 0, kd = 0, carLen = 1;
+  // Initialising Constructor (creating an object of the class)
+  // stub implementation
+  double kp = -12, ki = 0, kd = 0, carLen = 1;
 
-  // Heading and velocity to be achieved. Heading should be -3.14 and +3.14
+  // Heading and velocity to be achieved. Heading should be between -3.14 and +3.14
   double headingSp = 2, velSp = 1;
 
   // Initializing simulation
-  double nIterations = 40, temp;
+  double nIterations = 40;
   double simulationTime = 0.05;
   // ackerman_sim simObj(simulationTime);
 
@@ -39,24 +39,22 @@ int main() {
   double *posYptr = &posY;
 
   obj.setSetPoints(headingSp, velSp);
-  std::cout << "The heading setpoint is : " << headingSp << std::endl
-            << "Enter a value and press enter...." << std::endl;
-  std::cin >> temp;
-  double lVel = velSp / 2, rVel = velSp / 2, steer = 0;
-  double *lVelptr = &lVel;
-  double *rVelptr = &rVel;
+  std::cout << "The heading setpoint is : " << headingSp << std::endl;
+  double lSpeed = velSp / 2, rSpeed = velSp / 2, steer = 0;
+  double *lSpeedptr = &lSpeed;
+  double *rSpeedptr = &rSpeed;
   double *steerptr = &steer;
 
   // Running simulation
-  for (int k = 1; k < nIterations; k++) {
-    std::cout << "Simulation Iteration No : \t " << k << std::endl;
-    obj.compute(steerptr, lVelptr, rVelptr, posXptr, posYptr, headingptr,
+  for (int z = 1; z < nIterations; z++) {
+    std::cout << "Simulation Iteration Number: \t" << z << std::endl;
+    obj.compute(steerptr, lSpeedptr, rSpeedptr, posXptr, posYptr, headingptr,
                    carLen);
-    std::cout << "Current Heading : " << *headingptr
-              << ", Current X Position : " << *posXptr
-              << ", Current Y Position : " << *posYptr << std::endl;
-    obj.computePIDParameters(steerptr, headingptr, rVelptr, lVelptr);
-    std::cout << "Steering angle PID output : " << *steerptr << std::endl
+    std::cout << "Current Heading: " << *headingptr
+              << ", Current X Position: " << *posXptr
+              << ", Current Y Position: " << *posYptr << std::endl;
+    obj.computePIDParameters(steerptr, headingptr, rSpeedptr, lSpeedptr);
+    std::cout << "Steering angle PID output: " << *steerptr << std::endl
               << std::endl;
   }
   return 0;

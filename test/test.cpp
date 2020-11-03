@@ -18,7 +18,7 @@
 
 TEST(objTest, controlFunctionTest1) {
     pidController obj(2.7, 4.5, 6.3, 1.0, false);
-    EXPECT_EQ(2, obj.computeControlAction(2));
+    EXPECT_EQ(5.4, obj.computeControlAction(2));
 }
 
 
@@ -58,7 +58,6 @@ TEST(objTest, paramSetTest) {
     obj.setPreviousError(6.2);
     obj.setIntegralError(5.3);
     obj.setSp(2.2);
-    obj.reset();
 
     EXPECT_EQ(5.6, obj.getKp());
     EXPECT_EQ(2.3, obj.getKd());
@@ -112,5 +111,6 @@ TEST(objTest, paramSetTest) {
 
 TEST(objTest, getVeriableTest6) {
     pidController obj;
+    obj.reset();
     EXPECT_EQ(0, obj.throttleOutput());
 }

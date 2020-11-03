@@ -26,7 +26,7 @@ class pidController {
   std::chrono::system_clock::time_point prevTime;
   double baseline, carLen, arcRadius, rWheelVel, lWheelVel, steeringAngle, setpointSpeed, setpointHeading;
   double dtSim, posX, posY, updatedHeading;
-  double leftWheelSpeed = 0, rightWheelSpeed = 0;
+  double leftWheelSpeed, rightWheelSpeed;
 
  public:
   /**
@@ -72,14 +72,6 @@ class pidController {
    */
 
   double computeControlAction(double feedback);
-
-  /**
-   * @brief Function to change the time value.
-   * @param newDt (new time value).
-   * @return None.
-   */
-
-  void changeInTime(double newDt);
 
 
   /**
@@ -147,13 +139,18 @@ class pidController {
   void setIntegralError(double);
 
   /**
+   * @brief Function to set the setpoint value of the PID controller
+   * @param setpoint
+   * @return None.
+   */
+
+  void setSp(double);
+
+  /**
    * @brief Function to get the proportional gain variable of the PID controller
    * @param None
    * @return kp (Proportional gain)
    */
-
-  void setSp(double);
-  double getSp();
 
   double getKp();
 
@@ -212,6 +209,14 @@ class pidController {
    */
 
   double getIntegralError();
+
+  /**
+   * @brief Function to get the setpoint value of the PID controller
+   * @param None
+   * @return setpoint value
+   */
+
+  double getSp();
 
   /**
    * @brief Function to compute the arc radius of the wheel from rotation point.
