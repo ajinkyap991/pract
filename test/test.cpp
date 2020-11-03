@@ -57,6 +57,7 @@ TEST(objTest, paramSetTest) {
     obj.setPreviousError(6.2);
     obj.setIntegralError(5.3);
     obj.setSp(2.2);
+    obj.setSetPoints(2.2, 5.0);
     EXPECT_EQ(5.6, obj.getKp());
     EXPECT_EQ(2.3, obj.getKd());
     EXPECT_EQ(3.6, obj.getKi());
@@ -77,5 +78,22 @@ TEST(objTest, paramSetTest) {
 TEST(objTest, unitTest1) {
     pidController obj;
     obj.reset();
+    obj.computeArcRadius();
+    obj.computeWheelSpeed();
     EXPECT_EQ(0.8, obj.throttleOutput(0.8));
+    EXPECT_EQ(0.5, obj.throttleOutput(10));
 }
+
+/**
+* @brief This test covers the constraints function of the program
+* @param objTest is the name of the group of tests
+* @param unitTest2 is the specific name to check the constraint function
+*/
+
+TEST(objTest, unitTest2) {
+    pidController obj;
+    EXPECT_EQ(2.0, obj.constraints(2.2, 1.0, 2.0));
+    EXPECT_EQ(1.0, obj.constraints(0.5, 1.0, 2.0));
+    EXPECT_EQ(1.5, obj.constraints(1.5, 1.0, 2.0));
+}
+
